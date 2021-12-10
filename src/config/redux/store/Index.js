@@ -9,10 +9,11 @@ const reducer = combineReducers({
     userAuthReducer,
     productsReducer,
 
+
 })
 
 
-const store = createStore(reducer,applyMiddleware(thunk))
+const store = createStore(reducer, applyMiddleware(thunk));
 
 
 export default store

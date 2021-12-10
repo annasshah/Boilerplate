@@ -1,28 +1,29 @@
 import axios from "axios";
 
-function getData(dispatch) {
+async function getData() {
     const apiHandle = axios.create({
         baseURL: "https://fakestoreapi.com/products",
-    });
-
-    apiHandle.get()
+    })
+    await apiHandle.get()
         .then((e) => {
             let data = e.data
-            dispatch({
+            return {
                 type: "PRODUCTS",
                 products: data,
-            })
+                isLoading: false
+            }
         })
 
 }
 
 
 
-function changeUserAuth(dispatch,userAuthStatus) {
-    dispatch({
+function changeUserAuth(userAuthStatus) {
+    return {
         type: "USERAUTH",
         userAuth: userAuthStatus,
-    })
+        isLoading: false
+    }
 
 }
 
@@ -31,6 +32,4 @@ function changeUserAuth(dispatch,userAuthStatus) {
 
 
 
-
-
-export { getData,changeUserAuth }
+export { getData, changeUserAuth }
